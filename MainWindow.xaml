@@ -1,0 +1,58 @@
+﻿<Window x:Class="TcpClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TcpClient"
+        mc:Ignorable="d"
+        Title="TCP Client" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="IP: " Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtIp" MinWidth="100" Margin="5" VerticalContentAlignment="Center"/>
+            <TextBlock Text="Port: " Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtPort" MinWidth="50" Margin="5"  VerticalContentAlignment="Center" KeyDown="Port_KeyDown" TextChanged="Port_TextChanged"/>
+            <TextBlock Text="Encoding Type: " Margin="5" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cmbEncodingType" MinWidth="100" Margin="5" >
+                <ComboBoxItem Content="UTF-8"/>
+                <ComboBoxItem Content="ASCII"/>
+                <ComboBoxItem Content="Unicode"/>
+                <ComboBoxItem Content="UTF-7"/>
+                <ComboBoxItem Content="UTF-32"/>
+            </ComboBox>
+            <Button x:Name="btnSend" Margin="5" Padding="5" Content="SEND" MinWidth="100" Click="SendMessage"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox AcceptsReturn="True" x:Name="txtInput"
+                     ScrollViewer.CanContentScroll="True"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     >
+                <TextBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Clear" Click="ClearTextInput"/>
+                    </ContextMenu>
+                </TextBox.ContextMenu>
+            </TextBox>
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
+            <TextBox Grid.Row="2" AcceptsReturn="True" x:Name="txtOutput"
+                     ScrollViewer.CanContentScroll="True"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     >
+                <TextBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Clear" Click="ClearTextOutput"/>
+                    </ContextMenu>
+                </TextBox.ContextMenu>
+            </TextBox>
+        </Grid>
+    </Grid>
+</Window>
